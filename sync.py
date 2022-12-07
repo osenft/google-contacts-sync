@@ -493,7 +493,7 @@ for tag, val in t2aru.items():
     groupRNs = [
         grp["contactGroupMembership"]["contactGroupResourceName"]
         for grp in contact["memberships"]
-        if grp["contactGroupMembership"]["contactGroupId"] != "myContacts"
+        if "contactGroupMembership" in grp and grp["contactGroupMembership"]["contactGroupId"] != "myContacts"
     ]
     # get syncTag for each RN
     groupTags = [
@@ -504,7 +504,7 @@ for tag, val in t2aru.items():
     contact["memberships"] = [
         grp
         for grp in contact["memberships"]
-        if grp["contactGroupMembership"]["contactGroupId"] == "myContacts"
+        if "contactGroupMembership" in grp and grp["contactGroupMembership"]["contactGroupId"] == "myContacts"
     ]
 
     for otheremail, otheracc in con.items():
