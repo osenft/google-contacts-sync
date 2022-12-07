@@ -390,6 +390,15 @@ class Contacts():
 
         if rn is not None:
             try:
+                if 'userDefined' in body:
+                    to_replace = []
+                    for entry in body['userDefined']:
+                        if len(entry) >= 2:
+                            to_replace.append(entry)
+                            print('Including ', entry)
+                        else:
+                            print('Dropping ', entry)
+                    body.update({'userDefined': to_replace})
                 body.update({'etag': self.info[rn]['etag']})
                 self.service.people().updateContact(
                     resourceName=rn,
@@ -400,6 +409,7 @@ class Contacts():
                 # sleep to avoid 429 HTTP error because rate limit
                 if verbose:
                     print("[ERROR] ", e)
+                    print("body: ", body)
                 sleep(1)
                 self.update(tag, body, verbose)
 
