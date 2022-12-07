@@ -483,6 +483,7 @@ for tag, val in t2aru.items():
     acc, rn = newest[:2]
     vprint(f"{acc.info[rn]['name']}: ", end='')
     contact = acc.get(rn)
+    time.sleep(0.5)
 
     # before sending the update
     # I take all the RNs of the labels  (except myContacts)
