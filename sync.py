@@ -109,6 +109,8 @@ def save_config(cp, cfile):
 
 
 def remove_prefix(text, prefix):
+    if not isinstance(text, str):
+        return text
     if text.startswith(prefix):
         return text[len(prefix):]
     return text  # or whatever

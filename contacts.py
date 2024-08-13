@@ -301,7 +301,10 @@ class Contacts():
         rn = [rn for rn, v in self.info.items() if v['tag'] == tag]
         if not rn:
             return None
-        assert(len(rn) == 1)
+        #assert(len(rn) == 1)
+        if len(rn) != 1:
+            print("rn: " + str(rn))
+            assert(false)
         return rn[0]
 
     def name_to_rn(self, name):
